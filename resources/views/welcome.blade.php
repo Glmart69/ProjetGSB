@@ -42,6 +42,7 @@
 
             .content {
                 text-align: center;
+
             }
 
             .title {
@@ -71,7 +72,7 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-
+    ere
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
                         @endif
