@@ -14,5 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('vues.Accueil');
 });
+
+Route::get('/connexion', function () {
+    return view('vues.login');
+});
+
+Route::get('/medicaments', "MedicamentController@ListeMedicaments");
+
+Route::post('/medicaments', "MedicamentController@RechercheMedicament");
+
+Route::get('/formulation/{id}', "FormulationController@AfficherFormulation");
+
+Route::post('/connexion', "ConnexionController@Connexion");
+
+Route::get('/deconnexion', "ConnexionController@Deconnexion");
+
+Route::get('/supprimer/{id}', "MedicamentController@Supprimer");
