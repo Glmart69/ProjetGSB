@@ -27,8 +27,16 @@ Route::post('/medicaments', "MedicamentController@RechercheMedicament");
 
 Route::get('/formulation/{id}', "FormulationController@AfficherFormulation");
 
+Route::get('/modification/{id1}/{id2}', "FormulationController@ModificationFormulation");
+
+Route::post('/modification', "FormulationController@ValideFormulation");
+
+Route::post('/ajouter', "FormulationController@AjouterFormulation");
+
+Route::get('/supprimer/{id1}/{id2}', "FormulationController@SupprimerFormulation");
+
 Route::post('/connexion', "ConnexionController@Connexion");
 
 Route::get('/deconnexion', "ConnexionController@Deconnexion");
 
-Route::get('/supprimer/{id}', "MedicamentController@Supprimer");
+

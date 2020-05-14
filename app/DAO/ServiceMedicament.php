@@ -35,4 +35,17 @@ class ServiceMedicament
             throw new MonException($e->getMessage());
         }
     }
+
+    public function NomMedicament($id) {
+        try {
+            $info = DB::table('MEDICAMENT')
+                ->join('FAMILLE', 'medicament.id_famille', '=' , 'famille.id_famille')
+                ->where('id_medicament' , '=' , $id)
+                ->first();
+            return $info;
+        }
+        catch(QueryException $e) {
+            throw new MonException($e->getMessage());
+        }
+    }
 }
