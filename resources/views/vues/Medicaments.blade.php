@@ -2,11 +2,11 @@
 @section("body")
 
     <div class="MsgAcc">
-        Voici la liste des médicaments
+        <h2>Liste des médicaments</h2>
     </div>
 
 
-    <div class="container form-med">
+    <div class="container form-med recherche">
         <form method="post" action="{{url('medicaments')}}">
             @CSRF
             <label for="nom">Nom</label>
@@ -15,7 +15,7 @@
             <input id="nomFamille" type="text" name="nomFamille" value="">
             <input type="submit" name="" value="Recherche">
         </form>
-    </div>x
+    </div>
 
     <div class="container">
         <table class="table tableau">

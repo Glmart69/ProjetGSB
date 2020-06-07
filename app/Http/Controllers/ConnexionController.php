@@ -41,4 +41,40 @@ class ConnexionController extends Controller
         Session::forget('id');
         return redirect('/');
     }
+
+    public function ApiConnexion(Request $request) {
+        try {
+            $JSON = file_get_contents("php://input");
+            $data = json_decode($JSON);
+            $login = $data->login;
+            $password = $data->mdp;
+            $reponse = array();
+            $log = new ServiceConnexion();
+            $visiteur = $log->InfoConnexion($login);
+            if ($visiteur != null) {
+                if (Hash::check($password , $visiteur->pwd_visiteur)) {
+                    $reponse["message"] = 'OK';
+                    return $reponse;
+                }
+                else {
+                    $erreur = "Mot de passe incorrect";
+                    $reponse["message"] = 'erreur';
+                    $reponse["erreur"] = $erreur;
+                    return $reponse;
+                }
+            }
+            else {
+                $erreur = "Identifiant incorrect ou non existant";
+                $reponse["message"] = 'erreur';
+                $reponse["erreur"] = $erreur;
+                return $reponse;
+            }
+        }
+        catch(MonException $e) {
+            $erreur = $e->getMessage();
+            $reponse["message"] = 'erreur';
+            $reponse["erreur"] = $erreur;
+            return $reponse;
+        }
+    }
 }

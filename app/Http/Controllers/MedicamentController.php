@@ -23,6 +23,27 @@ class MedicamentController extends Controller
         }
     }
 
+    public function ApiListeMedicaments()
+    {
+        try {
+            $JSON = file_get_contents("php://input");
+            $data = json_decode($JSON);
+            $nom = $data->lib_med;
+            $nomFamille = $data->lib_fam;
+            $reponse = array();
+            $med = new ServiceMedicament();
+            $mesMedicaments = $med->RechercheParNom($nom, $nomFamille);
+            $reponse["message"] = 'OK';
+            $reponse['data'] = $mesMedicaments;
+            return $reponse;
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            $reponse["message"] = 'erreur';
+            $reponse["erreur"] = $erreur;
+            return $reponse;
+        }
+    }
+
     public function RechercheMedicament(Request $request)
     {
         try {
@@ -37,4 +58,23 @@ class MedicamentController extends Controller
             return view("vues.erreur", compact('erreur'));
         }
     }
+
+    public function ApiRecupererNom($id)
+    {
+        try {
+
+            $reponse = array();
+            $nomMed = new ServiceMedicament();
+            $mesNomMedicaments = $nomMed->NomMedicament($id);
+            $reponse["message"] = 'OK';
+            $reponse['data'] = $mesNomMedicaments;
+            return $reponse;
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            $reponse["message"] = 'erreur';
+            $reponse["erreur"] = $erreur;
+            return $reponse;
+        }
+    }
+
 }

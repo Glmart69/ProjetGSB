@@ -17,3 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('connexion', "ConnexionController@ApiConnexion");
+
+Route::post('medicament',"MedicamentController@ApiListeMedicaments");
+
+Route::get('interaction',"InteractionController@ApiListeInteractions");
+
+Route::get('nomMedicament/{id}',"MedicamentController@ApiRecupererNom");
+
+Route::get('suppression/{id}/{idSecMed}',"InteractionController@ApiSuppression");
+
+Route::get('listeMedNonAjout',"InteractionController@ApiListMedNonAjout");
+
+Route::get('ajoutInteraction/{id}/{idSecMed}', "InteractionController@ApiAjoutInteraction");

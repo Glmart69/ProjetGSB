@@ -5,7 +5,8 @@
     <div class="container formulaire">
         <form class="" action="{{url("/modification")}}" method="post">
             @csrf
-            <label for="qte">Quantité :</label>
+            <label for="qte"></label>
+            <h4>Modification de la quantité :</h4>
             <input type="hidden" name="id_medicament" value="{{$maFormulation->id_medicament}}">
             <input type="hidden" name="id_formuler" value="{{$maFormulation->id_presentation}}">
             <input id="qte" type="number" name="qte" min="0" value="{{$maFormulation->qte_formuler}}">
